@@ -7,14 +7,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './emp-add-edit.component.scss'
 })
 export class EmpAddEditComponent {
-  empForm = FormGroup;
+  empForm: FormGroup;
   education: string[] = [
     'Diploma',
     'Graduate',
     'Post Graduate',
   ];
-  constructor(private _fb: FormBuilder){
-    this.empForm = this._fb.group({
+  constructor(private _formBuilder: FormBuilder){
+    this.empForm = this._formBuilder.group({
       firstName:'',
       lastName:'',
       email:'',
