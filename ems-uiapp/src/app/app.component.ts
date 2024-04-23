@@ -14,7 +14,19 @@ import {MatTableDataSource} from '@angular/material/table';
 export class AppComponent implements OnInit{
   title = 'ems-uiapp';
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'dob', 'gender', 'education', 'company', 'experience', 'package'];
+  displayedColumns: string[] = [
+    'id', 
+    'firstName', 
+    'lastName', 
+    'email', 
+    'dob', 
+    'gender', 
+    'education', 
+    'company', 
+    'experience', 
+    'package',
+    'action'
+  ];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -50,5 +62,14 @@ export class AppComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  deleteEmployee(id:number){
+    this._empService.deleteEmployee(id).subscribe({
+      next: (res) => {
+        alert('Employee Deleted!')
+      },
+      error:console.log,
+    });
   }
 }

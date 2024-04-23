@@ -18,4 +18,10 @@ export class EmployeeService {
   {
     return this._http.get('http://localhost:3000/employees');
   }
+
+  deleteEmployee(id: number):Observable<any>
+  {
+    return this._http.delete('http://localhost:3000/employees/${id}');
+  }
+
 }
