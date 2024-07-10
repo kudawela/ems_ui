@@ -5,6 +5,7 @@ import { EmployeeService } from './services/employee.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { validateHeaderName } from 'node:http';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,14 @@ export class AppComponent implements OnInit{
       this.getEmployeeList();
   }
   openAddEditEmpForm(){
-    this._dialog.open(EmpAddEditComponent);
+    const dialogRef = this._dialog.open(EmpAddEditComponent);
+    dialogRef.afterClosed().subscribe({
+      next:(val) => {
+        if(val){
+          this.getEmployeeList();
+        }
+      }
+    })
   }
 
   getEmployeeList(){
