@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../services/employee.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { privateDecrypt } from 'node:crypto';
 
 @Component({
   selector: 'app-emp-add-edit',
   templateUrl: './emp-add-edit.component.html',
   styleUrl: './emp-add-edit.component.scss'
 })
-export class EmpAddEditComponent {
+export class EmpAddEditComponent implements OnInit{
   empForm: FormGroup;
   education: string[] = [
     'Diploma',
     'Graduate',
     'Post Graduate',
   ];
-  constructor(private _formBuilder: FormBuilder, private _empService: EmployeeService, private _dialogRef:MatDialogRef<EmpAddEditComponent>){
+  constructor(
+    private _formBuilder: FormBuilder, 
+    private _empService: EmployeeService, 
+    private _dialogRef:MatDialogRef<EmpAddEditComponent>,
+  @Inject(MAT_DIALOG_DATA) private data: any){
     this.empForm = this._formBuilder.group({
       firstName:'',
       lastName:'',
@@ -29,6 +34,9 @@ export class EmpAddEditComponent {
     })
   }
 
+  ngOnInit(): void {
+      this.empForm.patchValue(this.data);
+  }
   onFormSubmit(){
     if(this.empForm.valid){
      // console.log(this.empForm.value); // print to the console

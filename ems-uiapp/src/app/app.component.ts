@@ -80,4 +80,10 @@ export class AppComponent implements OnInit{
       error:console.log,
     });
   }
+
+  openEditForm(data:any){
+    this._dialog.open(EmpAddEditComponent, {
+      data,
+    });
+  }
 }
