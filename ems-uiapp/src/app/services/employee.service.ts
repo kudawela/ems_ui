@@ -16,7 +16,7 @@ export class EmployeeService {
 
   updateEmployee(id:number, data: any):Observable<any>
   {
-    return this._http.put('http://localhost:3000/employees/$(id)', data);
+    return this._http.put(`http://localhost:3000/employees/${id}`, data);
   }
 
   getEmployeeList():Observable<any>
@@ -24,9 +24,9 @@ export class EmployeeService {
     return this._http.get('http://localhost:3000/employees');
   }
 
-  deleteEmployee(id: number):Observable<any>
-  {
-    return this._http.delete('http://localhost:3000/employees/${id}');
+  deleteEmployee(id: number): Observable<any> {
+    return this._http.delete(`http://localhost:3000/employees/${id}`);
   }
+  
 
 }
