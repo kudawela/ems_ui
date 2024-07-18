@@ -33,7 +33,7 @@ export class EmpAddEditComponent implements OnInit{
       education:'',
       company:'',
       experience:'',
-      package:'',
+      salary:'',
     })
   }
 

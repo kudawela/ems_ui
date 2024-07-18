@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
     'education', 
     'company', 
     'experience', 
-    'package',
+    'salary',
     'action'
   ];
   dataSource!: MatTableDataSource<any>;
